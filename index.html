@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<script type="text/babel">
+    const root = document.getElementById('root');
+    function MinutesToHours() {
+        const [amount, setAmount] = React.useState(0);
+        const [inverted, setInverted] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);
+        }
+        const reset = () => setAmount(0);
+        const onFlip = () => {
+            reset();
+            setInverted(current => !current);
+        }
+        return (
+            <div>
+                <div className="group">
+                    <div className="group_box"
+                        style={{ backgroundColor: inverted ? "rgba(239, 239, 239, 0.3)" : "#fff" }}>
+                        <input
+                            value={inverted ? (amount * 60) : amount}
+                            id="minutes"
+                            placeholder="Minutes"
+                            type="number"
+                            onChange={onChange}
+                            disabled={inverted} />
+                        <span>minutes</span>
+                    </div>
+                    <span>{inverted ? "▶" : "◀"}</span>
+                    <div className="group_box"
+                        style={{ backgroundColor: !inverted ? "rgba(239, 239, 239, 0.3)" : "#fff" }}>
+                        <input
+                            value={!inverted ? Math.round(amount / 60) : amount}
+                            id="hours"
+                            placeholder="Hours"
+                            type="number"
+                            onChange={onChange}
+                            disabled={!inverted} />
+                        <span>hours</span>
+                    </div>
+                </div>
+                <div className="group">
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}</button>
+                </div>
+            </div>
+        )
+    };
+    function KmToMiles() {
+        const [amount, setAmount] = React.useState(0);
+        const [inverted, setInverted] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);
+        }
+        const reset = () => setAmount(0);
+        const onFlip = () => {
+            reset();
+            setInverted(current => !current);
+        }
+        return (
+            <div>
+                <div className="group">
+                    <div className="group_box"
+                        style={{ backgroundColor: inverted ? "rgba(239, 239, 239, 0.3)" : "#fff" }}>
+                        <input
+                            value={inverted ? amount / 1000 : amount}
+                            id="km"
+                            placeholder="kilometers"
+                            type="number"
+                            onChange={onChange}
+                            disabled={inverted} />
+                        <span>km</span>
+                    </div>
+                    <span>{inverted ? "▶" : "◀"}</span>
+                    <div className="group_box"
+                        style={{ backgroundColor: !inverted ? "rgba(239, 239, 239, 0.3)" : "#fff" }}>
+                        <input
+                            value={!inverted ? amount * 1000 : amount}
+                            id="m"
+                            placeholder="meters"
+                            type="number"
+                            onChange={onChange}
+                            disabled={!inverted} />
+                        <span>m</span>
+                    </div>
+                </div>
+                <div className="group">
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}</button>
+                </div>
+            </div>
+        )
+    }
+    function App() {
+        const [index, setIndex] = React.useState("xx");
+        const onSelect = (event) => {
+            setIndex(event.target.value);
+        }
+        return (
+            <div id="container">
+                <h1>Super Converter</h1>
+                <select value={index} onChange={onSelect}>
+                    <option value="xx">Select your units</option>
+                    <option value="0">Minutes & Hours</option>
+                    <option value="1">Km & Miles</option>
+                </select>
+                <hr />
+                {index === "xx" ? <div className="xx">Please select your units</div> : null}
+                {index === "0" ? <MinutesToHours /> : null}
+                {index === "1" ? <KmToMiles /> : null}
+            </div>
+        )
+    };
+    ReactDOM.render(<App />, root);
+</script>
+
+</html>
