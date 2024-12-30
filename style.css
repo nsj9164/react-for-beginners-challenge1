@@ -37,34 +37,41 @@ h1 {
 
 select {
   margin-bottom: 25px;
-  -webkit-appearance: none; /* 기본 화살표 제거 */
-  -moz-appearance: none; /* Firefox에서 기본 화살표 제거 */
-  appearance: none; /* 기본 화살표 제거 */
-  background-image: url("./img/custom_arrow.png"); /* 사용자 정의 화살표 */
+  border-radius: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("./img/custom_arrow.png");
   background-repeat: no-repeat;
-  background-position: right 10px center; /* 화살표 위치 */
-  background-size: 25px; /* 화살표 크기 조정 */
+  background-position: right 10px center;
+  background-size: 25px;
 }
 
 .group {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .group_box {
-  border: 1px solid #dcddde;
+  flex: 1;
+  max-width: 48%;
+  border: 1px solid #000;
+  border-radius: 5px;
   margin: 10px;
 }
 
 input {
   font-size: 17px;
-  width: 50%;
+  width: 70%;
   height: 40px;
   border: none;
   text-align: right;
-  -moz-appearance: textfield; /* Firefox */
-  -webkit-appearance: none; /* Safari, Chrome */
-  appearance: none; /* 일반 브라우저 */
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 input::-webkit-inner-spin-button,
@@ -77,5 +84,18 @@ button {
   width: 50%;
   height: 50px;
   font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
   margin: 10px;
+  cursor: pointer;
+}
+
+.reset {
+  background-color: #6c757d;
+}
+
+.flip {
+  background-color: #0d6efd;
 }
